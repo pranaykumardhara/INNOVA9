@@ -1,0 +1,79 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <typ:updateCustomerProfile>
+      <typ:customerProfile>
+        <cus:PartyId>XXXXXXXXXXXXXXX</cus:PartyId>
+        <cus:CustomerAccountId>-1</cus:CustomerAccountId>
+        <cus:CreditLimit>99999</cus:CreditLimit>
+      </typ:customerProfile>
+    </typ:updateCustomerProfile>
+  </soapenv:Body>
+</soapenv:Envelope>
+
+https://edrx-dev1.fa.us2.oraclecloud.com/fscmRestApi/resources/11.13.18.05/receivablesCustomerAccountSiteActivities?finder=CustomerAccountSiteActivitiesFinder;CustomerName=Roopa Customer
+
+https://servername/fscmService/ReceivablesCustomerProfileService?WSDL
+
+IBM Instance : https://edrx-dev1.login.us2.oraclecloud.com/
+
+Id : Subrata.Mukherjee
+Password : subrata1981
+
+    <reason>CASDK-0033: Received a SOAP fault while invoking endpoint target: https://edrx-dev1.fa.us2.oraclecloud.com:443/xmlpserver/services/ExternalReportWSSService. This indicates a processing exception on the service endpoint side. Please check service side logs to further diagnose the problem &lt;![CDATA[ Fault Code : env:Receiver Fault Reason : PublicReportService::generateReport failed: user: subrata.mukherjee does not have permission to run the report: /shared/customs/Report for Integration/CheckCreditLimit_report.xdo ]]&gt; :Application Error</reason>
+    <operation>runReport</operation>
+
+https://edrx-dev1.fa.us2.oraclecloud.com//fscmRestApi/resources/11.13.18.05/customerAccountSitesLOV
+
+https://servername/fscmService/ReceivablesCustomerProfileService?WSDL
+
+https://edrx-dev1.fa.us2.oraclecloud.com/fscmService/ReceivablesCustomerProfileService?WSDL
+https://edrx-dev1.login.us2.oraclecloud.com/fscmService/ReceivablesCustomerProfileService?WSDL
+
+Query for Credit Limit:
+SELECT Credit_Limit,Exchange_Rate_Type,Credit_Currency_Code,Credit_Hold
+FROM hz_customer_profiles_f
+WHERE cust_account_id = (select Cust_Account_Id from FUSION.Hz_Cust_Accounts where Account_Number= '70078')
+AND (Trunc(SYSDATE) BETWEEN effective_start_date AND effective_end_date)
+AND site_use_id is NULL
+AND status = 'A'
+
+
+https://ibmoic-idmfguxp1uca-ia.integration.ocp.oraclecloud.com/ic/api/integration/v1/flows/rest/GETPARTYIDREPORTSERVICE/1.0/get_cust_party_id
+
+T
+https://ibmoic-idmfguxp1uca-ia.integration.ocp.oraclecloud.com/ic/api/integration/v1/flows/rest/GETCUSTOMERCREDITLIMIT/1.0/get_cust_credit_limit
+https://ibmoic-idmfguxp1uca-ia.integration.ocp.oraclecloud.com/ic/home/
+
+Vikramjit.sen1@ibm.com
+
+Welcome@2024
+
+decodeBase64ToReference( reportBytes)
+
+SELECT Credit_Limit,Exchange_Rate_Type,Credit_Currency_Code,Credit_Hold
+FROM hz_customer_profiles_f
+WHERE cust_account_id = (select Cust_Account_Id from FUSION.Hz_Cust_Accounts where Account_Number= '70078')
+AND (Trunc(SYSDATE) BETWEEN effective_start_date AND effective_end_date)
+AND site_use_id is NULL
+AND status = 'A'
+
+
+
+party ID and Account ID:
+select hp.party_name customer_name,
+a1.account_number customer_number,
+a3.STATUS site_status,
+ SITE_USE_CODE,LOCATION,PRIMARY_FLAG
+,PARTY_SITE_NUMBER,A5.ADDRESS1,A5.ADDRESS2,A5.ADDRESS3,A5.ADDRESS4,A5.CITY,A5.POSTAL_CODE,A5.STATE,A5.COUNTRY
+ from hz_cust_accounts a1,hz_cust_acct_sites_all a2,
+ hz_cust_site_uses_all a3,HZ_PARTY_SITES A4,HZ_LOCATIONS A5,
+ hz_parties hp
+ where a1.CUST_ACCOUNT_ID=a2.CUST_ACCOUNT_ID
+ and a1.party_id=hp.party_id
+ and a2.CUST_ACCT_SITE_ID=a3.CUST_ACCT_SITE_ID
+ and nvl(A1.STATUS,'A')='A'
+ and nvl(A3.STATUS,'A')='A'
+ AND A2.PARTY_SITE_ID=A4.PARTY_SITE_ID
+ AND A4.LOCATION_ID=A5.LOCATION_ID and upper(hzP.party_name) LIKE upper('SM Customer%')
+ ORDERBY hzp.party_number,hza.account_number,hzl.LOCATION_ID
