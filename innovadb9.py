@@ -18,7 +18,7 @@ from zeep.wsse.utils import WSU
 
 app = Flask(__name__)
 CORS(app)
-openai.api_key = "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"
+openai.api_key = ""
 jsonData = None
 def get_customer_information(customer):
                     """Get the information about given customer."""
@@ -240,4 +240,5 @@ def home():
 						messages=[{"role": "user", "content": user_prompt}],
 					).choices[0].message.content,'containJson':False}    
 if __name__ == '__main__':
+
     app.run(port='5000',host='0.0.0.0')
